@@ -1,4 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/venv
+.idea
+# Created by https://www.toptal.com/developers/gitignore/api/venv
 # Edit at https://www.toptal.com/developers/gitignore?templates=venv
 
 ### venv ###

